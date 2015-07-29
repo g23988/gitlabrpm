@@ -1,11 +1,11 @@
 #!/bin/bash
 
-yum install curl openssh-server postfix cronie
+#yum install curl openssh-server postfix cronie
 service postfix start
 chkconfig postfix on
 lokkit -s http -s ssh
 
-
+cat outputaa outputab outputac outputad outputae > gitlab-ce-7.12.2~omnibus.1-1.x86_64.el6.rpm
 
 
 
@@ -19,15 +19,15 @@ yum_repo_path=/etc/yum.repos.d/gitlab_gitlab-ce.repo
 yum_repo_config_url="https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/config_file.repo?os=${os}&dist=${major_version}&name=${host}&source=script"
 #https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/config_file.repo?os=centos&dist=6&name=localhost&source=script
 
-curl -f "${yum_repo_config_url}" > $yum_repo_path
+#curl -f "${yum_repo_config_url}" > $yum_repo_path
 
-yum install -y pygpgme --disablerepo='gitlab_gitlab-ce'
+#yum install -y pygpgme --disablerepo='gitlab_gitlab-ce'
 pypgpme_check=`rpm -qa | grep -qw pygpgme`
 
-yum install -y yum-utils --disablerepo='gitlab_gitlab-ce'
+#yum install -y yum-utils --disablerepo='gitlab_gitlab-ce'
 yum_utils_check=`rpm -qa | grep -qw yum-utils`
 
-yum -q makecache -y --disablerepo='*' --enablerepo='gitlab_gitlab-ce'
+#yum -q makecache -y --disablerepo='*' --enablerepo='gitlab_gitlab-ce'
 
 :<<eof
 這是當下那個url的資訊
@@ -52,7 +52,8 @@ sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 eof
 
-yum install gitlab-ce
+#yum install gitlab-ce
 
+rpm -Uvh gitlab-ce-7.12.2~omnibus.1-1.x86_64.el6.rpm
 gitlab-ctl reconfigure
 
